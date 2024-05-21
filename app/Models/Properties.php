@@ -11,14 +11,6 @@ class Properties extends Model
 
     protected $table = 'properties';
 
-    // fetch all the houses owned by the character.
-    public function fetchHouses($id)
-    {
-        return $this->where('owner', $id)
-                        ->orderBy('id', 'asc')
-                        ->get();
-    }
-
     // Add a method to extract weapons from house data
     public function getWeapons()
     {

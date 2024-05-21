@@ -15,18 +15,10 @@ class HighscoresController extends Controller
 
         // Format hours attribute for each character
         foreach ($data as &$character) {
-            $character->hours = $this->secondsToHMS($character->hours);
+            $character->hours = secondsToHMS($character->hours);
         }
 
         return view('highscores.playingtime', compact('data'));
-    }
-
-    private function secondsToHMS($seconds) {
-        $hours = floor($seconds / 3600);
-        $minutes = floor(($seconds % 3600) / 60);
-        $seconds = $seconds % 60;
-        
-        return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
     }
 
     public function wealthiest(Character $characters)

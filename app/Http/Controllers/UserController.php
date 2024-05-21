@@ -70,7 +70,7 @@ class UserController extends Controller
         $account = $account->find($userId);
         $username = $account->username;
         $registerdate = $account->registerdate;
-        $totalhours = $this->secondsToHMS($characters->calculateTotalHours($userId));
+        $totalhours = secondsToHMS($characters->calculateTotalHours($userId));
         $donatorrank = getDonatorRank($account->donator);
         $email = $account->email ?? 'Unset';
         $verified = $account->verified ? 'Verified' : 'Not Verified';
@@ -83,7 +83,7 @@ class UserController extends Controller
 
         // Format hours attribute for each character
         foreach ($c as &$character) {
-            $character->hours = $this->secondsToHMS($character->hours);
+            $character->hours = secondsToHMS($character->hours);
         }
 
         return view('user.index', compact('c', 'username', 'registerdate', 'totalhours', 'donatorrank', 'email', 'verified', 'vip', 'viptime', 'vip_expiration'));
@@ -196,7 +196,7 @@ class UserController extends Controller
             abort(403);
         }
 
-        $character->hours = $this->secondsToHMS($character->hours);
+        $character->hours = secondsToHMS($character->hours);
 
         $faction = $character->faction->name ?? null;
         $gang = $character->gang->name ?? null;
@@ -220,9 +220,8 @@ class UserController extends Controller
     public function house(Character $characters, $id)
     {
         $character = Character::findOrFail($id);
-        $house = new Properties();
         $furniture = new Furniture();
-        $properties = $house->fetchHouses($id);
+        $properties = Properties::where('owner', $id)->orderBy('id')->get();
 
         $authid = auth()->id();
         
@@ -273,8 +272,7 @@ class UserController extends Controller
     public function business(Character $characters, $id)
     {
         $character = Character::findOrFail($id);
-        $business = new Business();
-        $businesses = $business->fetchBusinesses($id);
+        $businesses = Business::where('owner', $id)->orderBy('id')->get();
         
         $authid = auth()->id();
         
@@ -288,8 +286,7 @@ class UserController extends Controller
     public function vehicle(Character $characters, $id)
     {
         $character = Character::findOrFail($id);
-        $vehicle = new Vehicle();
-        $vehicles = $vehicle->fetchVehicles($id);
+        $vehicles = Vehicle::where('owner', $id)->orderBy('id')->get();
         
         $authid = auth()->id();
         
@@ -298,13 +295,5 @@ class UserController extends Controller
         }
 
         return view('user.vehicle', compact('vehicles', 'character'));
-    }
-
-    private function secondsToHMS($seconds) {
-        $hours = floor($seconds / 3600);
-        $minutes = floor(($seconds % 3600) / 60);
-        $seconds = $seconds % 60;
-        
-        return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
     }
 }

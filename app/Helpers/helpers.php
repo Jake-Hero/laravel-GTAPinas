@@ -1,6 +1,16 @@
 <?php
 use Illuminate\Support\Facades\DB;
 
+if (!function_exists('secondsToHMS')) {
+    function secondsToHMS($seconds) {
+        $hours = floor($seconds / 3600);
+        $minutes = floor(($seconds % 3600) / 60);
+        $seconds = $seconds % 60;
+        
+        return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+    }
+}
+
 if (!function_exists('getTurfType')) {
     function getTurfType($type) {
         $turf_type = "Unset";

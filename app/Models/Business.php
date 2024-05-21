@@ -12,14 +12,6 @@ class Business extends Model
 
     protected $table = 'business';
 
-    // fetch all the businesses owned by the character.
-    public function fetchBusinesses($id)
-    {
-        return $this->where('owner', $id)
-                        ->orderBy('id', 'asc')
-                        ->get();
-    }
-
     // Fetch business products and prices
     public function getProducts()
     {

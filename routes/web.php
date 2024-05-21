@@ -73,5 +73,19 @@ Route::middleware(['auth'])->group(function () {
 
         // admin/characters.php (on Vanilla PHP)
         Route::get('/admin/characters', [App\Http\Controllers\AdminController::class, 'characters'])->name('admin.characters');
+        // user/character.php?id={$id}
+        Route::get('/admin/character/{id}', [App\Http\Controllers\AdminController::class, 'character'])->name('admin.character');
+        // user/house.php?id={$id}
+        Route::get('/admin/house/{id}', [App\Http\Controllers\AdminController::class, 'house'])->name('admin.house');
+        // user/business.php?id={$id}
+        Route::get('/admin/business/{id}', [App\Http\Controllers\AdminController::class, 'business'])->name('admin.business');
+        // user/vehicle.php?id={$id}
+        Route::get('/admin/vehicle/{id}', [App\Http\Controllers\AdminController::class, 'vehicle'])->name('admin.vehicle');
+        // ajax/ajax_house_inventory.php (on Vanilla PHP)
+        Route::post('/ajax/admin/house_inventory', [App\Http\Controllers\UserController::class, 'house_inventory'])->name('ajax.admin.house_inventory');
+        // ajax/ajax_business_inventory.php (on Vanilla PHP)
+        Route::post('/ajax/admin/business_inventory', [App\Http\Controllers\UserController::class, 'business_inventory'])->name('ajax.admin.business_inventory');
+        // ajax/ajax_vehicle_inventory.php (on Vanilla PHP)
+        Route::post('/ajax/admin/vehicle_inventory', [App\Http\Controllers\UserController::class, 'vehicle_inventory'])->name('ajax.admin.vehicle_inventory');
     });
 });

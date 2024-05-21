@@ -35,13 +35,6 @@ class Vehicle extends Model
             ->get();
     }
 
-    // fetch all the vehicles owned by the character.
-    public function fetchVehicles($id) {
-        return $this->where('owner', $id)
-                        ->orderBy('id', 'asc')
-                        ->get();
-    }
-
     // Add a method to extract weapons from house data
     public function getWeapons()
     {
