@@ -11,7 +11,7 @@
     <div class="row mb-5">
         <!-- Back to My Characters -->
         <div class="col">
-            <a href="{{ route('user.dashboard') }}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> My Characters</a>
+            <a href="{{ route('user.index') }}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> My Characters</a>
         </div>
 
         <div class="col d-flex justify-content-end">

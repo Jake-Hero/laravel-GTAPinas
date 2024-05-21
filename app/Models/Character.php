@@ -24,6 +24,11 @@ class Character extends Model
         'email',
     ];
 
+    public function account()
+    {
+        return $this->belongsTo(Account::class, 'uid', 'id');
+    }
+
     // fetch all the characters assigned to that account ID.
     public function getCharacters($uid)
     {

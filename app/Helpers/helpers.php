@@ -1,4 +1,82 @@
 <?php
+use Illuminate\Support\Facades\DB;
+
+if (!function_exists('getTurfType')) {
+    function getTurfType($type) {
+        $turf_type = "Unset";
+
+        if(isset($type)) {
+            switch($type) {
+                case 1: $turf_type = "Crack"; break;
+                case 2: $turf_type = "Meth"; break;
+                case 3: $turf_type = "Materials"; break;
+                case 4: $turf_type = "Money"; break;
+            }
+        }
+        return $turf_type;
+    }
+}
+
+if (!function_exists('computeAverage')) {
+    function computeAverage($array) {
+        $average = 0;
+
+        if(is_array($array) && count($array) > 0) {
+            $average = collect($array)->avg();
+        }
+
+        return $average;
+    }
+}
+
+if (!function_exists('fetchData')) {
+    function fetchData($table, $select_column, $column, $value) {
+        $data = null;
+
+        if(isset($table) && isset($select_column) && isset($column) && isset($value)) {
+            $result = DB::table($table)
+                ->where($column, $value)
+                ->select($select_column)
+                ->first();
+
+            if ($result) {
+                $data = $result->{$select_column};
+            }
+        }
+        return $data;
+    }
+}
+
+if (!function_exists('countRowsInTableEx')) {
+    function countRowsInTableEx($table, $specifier, $value) {
+        $count = 0;
+
+        if(isset($table) && isset($specifier) && isset($value)) {
+            $count = DB::table($table)
+                ->where($specifier, '=', $value)
+                ->count();
+        }
+
+        return $count;
+    }
+}
+
+if (!function_exists('countRowsInTable')) {
+    function countRowsInTable($table)
+    {
+        return DB::table($table)->count();
+    }
+}
+
+if (!function_exists('countRowsInTableGreaterThan')) {
+    function countRowsInTableGreaterThan($table, $specifier, $value)
+    {
+        return DB::table($table)
+            ->where($specifier, '>=', $value)
+            ->count();
+    }
+}
+
 if (!function_exists('isRpNickname')) {
     function isRpNickname($nickname) {
         // Define the regular expression pattern

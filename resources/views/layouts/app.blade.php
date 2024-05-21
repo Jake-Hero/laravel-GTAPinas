@@ -86,14 +86,14 @@
                     @if($adminStatus > 0)
                     {
                         <li class="nav-tem">
-                            <a class="nav-link" href="/admin/index.php">Admin Panel</a>
+                            <a class="nav-link" href="{{ route('admin.index') }}">Admin Panel</a>
                         </li>
                     }
                     @endif
     
                     <!-- My Characters -->
                     <li class="nav-tem">
-                        <a class="nav-link" href="{{ route('user.dashboard') }}">My Characters</a>
+                        <a class="nav-link" href="{{ route('user.index') }}">My Characters</a>
                     </li>
     
                     <!-- User's Name -->

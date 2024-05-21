@@ -9,7 +9,7 @@
     <div class="row mt-2 mb-5">
         <!-- Back to My Characters -->
         <div class="col">
-            <a href="{{ route('user.dashboard') }}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Back to My Characters</a>
+            <a href="{{ route('user.index') }}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Back to My Characters</a>
         </div>
     </div>
 

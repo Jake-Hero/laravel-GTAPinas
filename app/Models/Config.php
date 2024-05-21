@@ -11,8 +11,32 @@ class Config extends Model
 
     protected $table = 'config';
 
-    protected $attributes = [
-        'START_MONEY' => 1000, // Default starting money
-        'START_BANK' => 1000,     // Default starting bank
+    protected $fillable = [
+        'START_MONEY',
+        'START_BANK',
+        'TaxRate',
+        'OOC_TOGGLE',
+        'ADMIN_MOTD',
+        'HELPER_MOTD',
+        'MOTD',
+        'A1_NAME',
+        'A2_NAME',
+        'A3_NAME',
+        'A4_NAME',
+        'A5_NAME',
+        'A6_NAME',
+        'A7_NAME',
+        'firstSpawnX',
+        'firstSpawnY',
+        'firstSpawnZ',
+        'firstSpawnA',
+        'taxvault',
+        'allow_android',
+        'vip_chat',
+        'global_chat',
+        'email_verify',
+        'anticheat',
+        'highestplayer',
+        'highestplayertimestamp',
     ];
 }

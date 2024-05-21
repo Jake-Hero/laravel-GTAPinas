@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
     return view('welcome');
@@ -9,17 +10,30 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/about', function() {
     return view('about');
 })->name('about');
+
+Route::get('/skins', function() {
+    return view('skins');
+})->name('skins');
+
+// highscores
+Route::get('/highscores/playingtime', [App\Http\Controllers\HighscoresController::class, 'playingtime'])->name('highscores.playingtime');
+Route::get('/highscores/wealthiest', [App\Http\Controllers\HighscoresController::class, 'wealthiest'])->name('highscores.wealthiest');
+Route::get('/highscores/skins', [App\Http\Controllers\HighscoresController::class, 'skins'])->name('highscores.skins');
+Route::get('/highscores/vehiclemodels', [App\Http\Controllers\HighscoresController::class, 'vehiclemodels'])->name('highscores.vehiclemodels');
 
 // user/login.php 
 Route::get('/user/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('user.login');
 Route::post('/user/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
 
+// Registered Users Only
 Route::middleware(['auth'])->group(function () {
     // user/dashboard.php
-    Route::get('/user/dashboard', [App\Http\Controllers\UserController::class, 'index'])->name('user.dashboard');
+    Route::get('/user/', [App\Http\Controllers\UserController::class, 'index'])->name('user.index');
+    
     // user/settings.php
     Route::get('/user/settings', [App\Http\Controllers\UserController::class, 'settings'])->name('user.settings');
     // post method for: user/settings.php
@@ -45,10 +59,19 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/ajax/vehicle_inventory', [App\Http\Controllers\UserController::class, 'vehicle_inventory'])->name('ajax.vehicle_inventory');
     // ajax/ajax_create_character.php (on Vanilla PHP)
     Route::post('/ajax/create_character', [App\Http\Controllers\UserController::class, 'insertCharacter'])->name('ajax.create_character');
-});
+    // ajax/ajax_fetch_characters.php (on Vanilla PHP)
+    Route::get('/ajax/fetch_characters', [App\Http\Controllers\AdminController::class, 'fetchCharacters'])->name('ajax.fetch_characters');
 
-// highscores
-Route::get('/highscores/playingtime', [App\Http\Controllers\HighscoresController::class, 'playingtime'])->name('highscores.playingtime');
-Route::get('/highscores/wealthiest', [App\Http\Controllers\HighscoresController::class, 'wealthiest'])->name('highscores.wealthiest');
-Route::get('/highscores/skins', [App\Http\Controllers\HighscoresController::class, 'skins'])->name('highscores.skins');
-Route::get('/highscores/vehiclemodels', [App\Http\Controllers\HighscoresController::class, 'vehiclemodels'])->name('highscores.vehiclemodels');
+    // Admin Panel
+    Route::middleware([AdminMiddleware::class])->group(function () {
+        // admin/dashboard.php (on Vanilla PHP)
+        Route::get('/admin/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+        // admin/groups.php (on Vanilla PHP)
+        Route::get('/admin/groups', [App\Http\Controllers\AdminController::class, 'groups'])->name('admin.groups');
+        // admin/turfs.php (on Vanilla PHP)
+        Route::get('/admin/turfs', [App\Http\Controllers\AdminController::class, 'turfs'])->name('admin.turfs');
+
+        // admin/characters.php (on Vanilla PHP)
+        Route::get('/admin/characters', [App\Http\Controllers\AdminController::class, 'characters'])->name('admin.characters');
+    });
+});

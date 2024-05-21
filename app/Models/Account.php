@@ -34,6 +34,11 @@ class Account extends Authenticatable
         ];
     }
 
+    public function characters()
+    {
+        return $this->hasMany(Character::class, 'uid', 'id');
+    }
+
     public function isDemoAccount()
     {
         return $this->email === 'sample@renegadecommunity.xyz' || $this->username === 'test_account';

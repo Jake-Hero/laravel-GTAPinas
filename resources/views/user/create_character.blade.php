@@ -9,7 +9,7 @@
     <div class="row mb-5">
         <!-- Back to My Characters -->
         <div class="col">
-            <a href="{{ route('user.dashboard') }}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Back to My Characters</a>
+            <a href="{{ route('user.index') }}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Back to My Characters</a>
         </div>
 
         <div class="col d-flex justify-content-end">
@@ -27,7 +27,7 @@
     </div>
 
     <div class='alert alert-danger'>
-        <strong><a href="/skins.php" target="_blank">Click here</a> to check for custom skin IDs.</strong> 
+        <strong><a href="{{ route('skins') }}" target="_blank">Click here</a> to check for custom skin IDs.</strong> 
     </div>
 
     <div class="shadow-lg p-3 mb-5 bg-light rounded">
@@ -99,7 +99,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- DatepickerJS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.js" integrity="sha512-RCgrAvvoLpP7KVgTkTctrUdv7C6t7Un3p1iaoPr1++3pybCyCsCZZN7QEHMZTcJTmcJ7jzexTO+eFpHk4OCFAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="stylesheet preload" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.css" integrity="sha512-YdYyWQf8AS4WSB0WWdc3FbQ3Ypdm0QCWD2k4hgfqbQbRCJBEgX0iAegkl2S1Evma5ImaVXLBeUkIlP6hQ1eYKQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" as="preload" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.css" integrity="sha512-YdYyWQf8AS4WSB0WWdc3FbQ3Ypdm0QCWD2k4hgfqbQbRCJBEgX0iAegkl2S1Evma5ImaVXLBeUkIlP6hQ1eYKQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- SweetAlert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -218,7 +218,7 @@
                         text: "Successfully created a new character.",
                         icon: "success"
                     }).then((result) => {
-                        window.location.href = "{{ route('user.dashboard') }}";
+                        window.location.href = "{{ route('user.index') }}";
                     });
                 },
                 error: function(xhr) {

@@ -86,7 +86,7 @@ class UserController extends Controller
             $character->hours = $this->secondsToHMS($character->hours);
         }
 
-        return view('user.dashboard', compact('c', 'username', 'registerdate', 'totalhours', 'donatorrank', 'email', 'verified', 'vip', 'viptime', 'vip_expiration'));
+        return view('user.index', compact('c', 'username', 'registerdate', 'totalhours', 'donatorrank', 'email', 'verified', 'vip', 'viptime', 'vip_expiration'));
     }
 
     // user/settings.php
@@ -130,7 +130,7 @@ class UserController extends Controller
     public function insertCharacter(Request $request)
     {
         $user = Auth::user();
-        $config = new Config();
+        $config = Config::first();
 
         $validator = Validator::make($request->all(), [
             'slot' => 'required|integer|min:1|max:3',
