@@ -1,6 +1,6 @@
 # GTA Pinas Website
 
-![GTA Pinas Logo](assets/pictures/gtapinas_logo.png)
+![GTA Pinas Logo](public/assets/pictures/gtapinas_logo.png)
 
 ----
 
