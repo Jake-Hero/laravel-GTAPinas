@@ -17,7 +17,7 @@ This is a User Control Panel website made for GTA Pinas (Renegade Roleplay Commu
 
 ----
 
-### This was originally coded in PHP Vanilla, while the front-end design is aided by the Bootstrap Framework and Standard CSS.
+### This was originally coded in Vanilla PHO, while the front-end design is aided by the Bootstrap Framework and Standard CSS.
 ### The whole project was converted and moved to Laravel Framework on May 18-19, 2024.
 
 ### The website's database is ran on MySQL (XAMPP) / PhpMyAdmin.
