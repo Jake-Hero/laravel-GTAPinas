@@ -1,4 +1,13 @@
 <?php
+if (!function_exists('isRpNickname')) {
+    function isRpNickname($nickname) {
+        // Define the regular expression pattern
+        $regex = "/^[A-Z][a-z]+_[A-Z][a-z]+$/";
+
+        // Check if the regex pattern matches the nickname
+        return preg_match($regex, $nickname);
+    }    
+}
 
 if (!function_exists('getSkinImage')) {
     // fetch skin image based on the given skinID.
@@ -14,7 +23,9 @@ if (!function_exists('getSkinImage')) {
         }
         return $skin_file;
     }
+}
 
+if (!function_exists('getVehicleImage')) {
     // fetch vehicle image based on the given vehicleID.
     function getVehicleImage($vid) {
         // question mark by default.
@@ -28,7 +39,9 @@ if (!function_exists('getSkinImage')) {
         }
         return $vehicle_file;
     }
+}
 
+if (!function_exists('getVehicleName')) {
     // fetch vehicle's model name based on the given modelID.
     function getVehicleName($model) {
         $vehicles = "undefined";
@@ -63,7 +76,9 @@ if (!function_exists('getSkinImage')) {
         }
         return $vehicles;
     }
+}
 
+if (!function_exists('getWeaponName')) {
     // fetch weapon's name based on the given ID.
     function getWeaponName($weaponid) {
         $weapon_name = null;
@@ -123,7 +138,9 @@ if (!function_exists('getSkinImage')) {
         }
         return $weapon_name;
     }
+}
 
+if (!function_exists('calculateCharacterAge')) {
     // checks the characyer's proper age. (converted from PAWN language (server's game script) to PHP)
     function calculateCharacterAge($timestamp) {
         $age = null;
@@ -143,7 +160,9 @@ if (!function_exists('getSkinImage')) {
         }
         return $age;	
     }
+}
 
+if (!function_exists('getBizType')) {
     // fetch business's type
     function getBizType($type) {
         if(isset($type)) {
@@ -162,7 +181,9 @@ if (!function_exists('getSkinImage')) {
         }
         return $type_name;
     }
+}
 
+if (!function_exists('getDonatorRank')) {
     // fetch account's donator rank
     function getDonatorRank($rank) {
         $rank_name = "Not Subscribed";

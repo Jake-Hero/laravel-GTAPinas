@@ -10,6 +10,7 @@ class Character extends Model
     use HasFactory;
 
     protected $table = 'characters';
+    public $timestamps = false;
 
     protected $fillable = [
         'uid', 'slot', 'charname', 'creation', 'last_login',
