@@ -1,0 +1,38 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Roboto';
+
+    overflow: auto;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-image: url('../pictures/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    background-attachment: fixed;
+}
+
+span, p, h1, h2, h3, h4, h5 {
+    font-family: 'Roboto';
+}
+
+main {
+    flex: 1 0 auto; /* 2 */
+    margin: 10px;
+    min-height: 100%;
+}
+
+footer {
+    margin-top: 10px;
+    flex-shrink: 0; 
+    width: 100%; 
+    bottom: 0;
+    font-size: 12px;
+}
