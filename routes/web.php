@@ -2,9 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
+use App\Mail\Mailer;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/test', function() {
+    $name = "Adrian Pilar";
+
+    Mail::to('justinerainielramos@gmail.com')->send(new Mailer($name));
 });
 
 Auth::routes();
