@@ -1,10 +1,15 @@
 @extends('layouts.app')
+@section('pageTitle', 'Login')
 
 @section('content')
 <div class="container-fluid vh-100">
     <div class="row py-5 d-flex vh-100 justify-content-center align-items-center">
-        <div class="col-lg-4 col-md-4 col-xs-12 float-none mx-auto">
+        <div class="col-lg-4 col-md-8 col-xs-12 float-none mx-auto">
             <div class="shadow-lg p-3 mb-5 bg-light rounded">
+                <div class='alert alert-warning'>
+                    <strong>Please register to our game server in order to access our UCP.</strong> 
+                </div>            
+
                 <div class="card-header mb-5">
                     <h5 class="text-center">
                         <i class="fa fa-user"></i> Account Login

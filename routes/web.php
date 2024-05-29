@@ -2,27 +2,34 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
-use App\Mail\Mailer;
+use App\Mail\VerifyEmail;
 use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function() {
-    $name = "Adrian Pilar";
-
-    Mail::to('justinerainielramos@gmail.com')->send(new Mailer($name));
-});
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Mailer (Verification)
+Route::get('mail/verify/{id}/{hash}', [App\Http\Controllers\MailerController::class, 'verify'])->name('mail.verify');
+Route::get('mail/resend', [App\Http\Controllers\MailerController::class, 'resend'])->name('mail.resend');
+
+Route::get('/test', function() {
+    $name = "Adrian";
+    $verificationUrl = "http://127.0.0.1:8000/mail/verify/2/b8be2983744e4b46cedeb2f571208dd51fa35869?expires=1716954970&signature=5c8a8fcf100ad35405a620a34c809ad9861dc684d623c5e007706eeb3afdcfbc";
+
+    return view('mail.verify', compact('name', 'verificationUrl'));
+})->name('test');
+
+// About.php
 Route::get('/about', function() {
     return view('about');
 })->name('about');
 
+// Skins.php
 Route::get('/skins', function() {
     return view('skins');
 })->name('skins');

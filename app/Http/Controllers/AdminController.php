@@ -14,6 +14,7 @@ use App\Models\Faction;
 use App\Models\Gang;
 use App\Models\FactionRank;
 use App\Models\GangRank;
+use App\Models\Turf;
 
 use App\Models\Properties;
 use App\Models\Furniture;

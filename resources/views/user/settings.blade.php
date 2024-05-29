@@ -29,11 +29,36 @@
                 </div>
             @endif
 
+            @if(empty($email))
+                <div class="alert alert-danger">
+                    <strong>You have not set your email yet, Please set your email to verify your account.</strong>
+                </div>
+            @else 
+                @if (!$verified)
+                    <div class="alert alert-warning">
+                        <strong>You need to verify your email address to access all settings.</strong>
+                        <p>Please check your email for the verification link.</p>
+
+                        @if (session('resent'))
+                            <p class="mt-3">A new verification link has been sent to your email address.</p>
+                        @else
+                            <p class="mt-3">If you haven't received the email, you can <a href="{{ route('mail.resend') }}">resend verification email</a>.</p>
+                        @endif
+                    </div>
+                @endif
+            @endif
+
             <form method="POST" action="{{ route('user.settings.change') }}">
                 @csrf
 
                 @if(session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
+                @if (session('email_verification'))
+                    <div class="alert alert-success">
+                        {{ session('email_verification') }}
+                    </div>
                 @endif
                 
                 @if ($errors->any())
@@ -47,6 +72,12 @@
                 @endif
 
                 <div class="col-lg-5 col-md-5 col-xs-12 float-none mx-auto">
+                    <div class="form-group">
+                        <small style="font-size: 10px">Current Email: {{ $email }}</small><br/>
+                        <label class="form-label">Email</label>
+                        <input class="form-control" type="text" placeholder="Email" name="new_email" />
+                    </div>
+
                     <div class="form-group">
                         <label class="form-label">New Password</label>
                         <input class="form-control" type="password" placeholder="Password" name="new_password" />

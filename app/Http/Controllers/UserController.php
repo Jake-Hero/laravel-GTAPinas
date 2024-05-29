@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Mail\VerifyEmail;
+
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\Config;
@@ -41,7 +46,7 @@ class UserController extends Controller
 
         $request->validate([
             'cur_password' => ['required'],
-            'new_password' => ['required', 'min:8', 'confirmed'],
+            //'new_password' => ['required', 'min:8', 'confirmed'],
         ]);
 
         // Check if the current password matches the user's password
@@ -49,11 +54,29 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Current password is incorrect');
         }
     
-        // Update user's password with the new password
-        $user->password = Hash::make($request->new_password);
+        // If the new email is different from the current email, update the email
+        if (!empty($request->new_email) && $request->new_email !== $user->email) {
+            $user->email = $request->new_email;
+            $user->email_verified_at = null; // Mark email as unverified
+
+            $verificationUrl = URL::temporarySignedRoute(
+                'mail.verify', now()->addMinutes(20), ['id' => $user->id, 'hash' => sha1($user->email)]
+            );
+    
+            Mail::to($user->email)->send(new VerifyEmail($user->username, $verificationUrl));
+
+            // Flash a success message
+            Session::flash('email_verification', 'A verification email has been sent to your new email address.');
+        }
+
+        if(!empty($request->new_password)) {
+            // Update user's password with the new password
+            $user->password = Hash::make($request->new_password);
+        }
+
         $user->save();
     
-        return redirect()->back()->with('success', 'Password changed successfully');
+        return redirect()->back()->with('success', 'Settings changed successfully');
     }
 
     // user/dashboard.php
@@ -76,7 +99,7 @@ class UserController extends Controller
         $verified = $account->verified ? 'Verified' : 'Not Verified';
         $vip = $account->donator;
         $viptime = $account->donatortime;
-        $vip_expiration = ($vip > 0) ? '('.date('m/d/Y h:iA', $viptime).')' : '';
+        $vip_expiration = ($vip > 0) ? '('.date('m/d/Y h:iA', strtotime($viptime)).')' : '';
 
         // Determine the highest slot
         $highest_slot = $c->max('slot');
@@ -94,7 +117,10 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $isDemo = $user->isDemoAccount();
-        return view('user.settings', compact('isDemo'));    
+        $email = $user->email;
+        $verified = $user->hasVerifiedEmail();
+
+        return view('user.settings', compact('isDemo', 'email', 'verified'));    
     }
 
     public function create_character($slot)

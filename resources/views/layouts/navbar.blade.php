@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('pageTitle') - {{ config('app.name', 'GTA Pinas Roleplay') }}</title>
+    <title>@yield('pageTitle') - {{ config('app.name', 'Renegade Community') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -24,7 +24,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top shadow-5-strong mb-5">
         <div class="container">
             <a class="navbar-brand" href="/index.php">
-                <img src="{{ asset('assets/pictures/gtapinas_logo.png') }}" alt="GTAPINASLOGO" height="50">
+                <img src="{{ asset('assets/pictures/rgrp_logo.png') }}" alt="RGRP_LGOO" height="50">
             </a>
     
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@
                     </li -->
     
                     <li class="nav-tem">
-                        <a class="nav-link" href="https://gtapinas.xyz/discord">Discord</a>
+                        <a class="nav-link" href="http://renegadecommunity.xyz/discord">Discord</a>
                     </li>
     
                 </ul>   
