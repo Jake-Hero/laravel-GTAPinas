@@ -118,7 +118,7 @@ class UserController extends Controller
         $user = Auth::user();
         $isDemo = $user->isDemoAccount();
         $email = $user->email;
-        $verified = $user->hasVerifiedEmail();
+        $verified = $user->verified;
 
         return view('user.settings', compact('isDemo', 'email', 'verified'));    
     }

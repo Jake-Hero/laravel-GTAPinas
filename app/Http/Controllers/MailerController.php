@@ -21,7 +21,7 @@ class MailerController extends Controller
     {
         $user = $request->user();
     
-        if ($user->hasVerifiedEmail()) {
+        if ($user->verified) {
             return Redirect::route('user.settings')->with('success', 'Your email address is already verified.');
         }
     
@@ -48,7 +48,7 @@ class MailerController extends Controller
             abort(403);
         }
 
-        if ($user->hasVerifiedEmail()) {
+        if ($user->verified) {
             return redirect('/');
         }
 

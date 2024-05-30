@@ -34,25 +34,12 @@ class VerifyEmail extends Mailable
         $image = asset("assets/pictures/rgrp_logo.png");
 
         return new Content(
-            view: 'mail.verify',
+            markdown: 'mail.verify',
             with: [
                 'name' => $this->username, 
                 'verificationUrl' => $this->verificationUrl, 
                 'image' => $image,]
         );
-    }
-
-    public function base64EncodeImage($imagePath)
-    {
-        if (file_exists($imagePath)) {
-            $imageData = file_get_contents($imagePath);
-            $base64Image = base64_encode($imageData);
-            $imageMimeType = mime_content_type($imagePath);
-            $base64ImageSrc = 'data:' . $imageMimeType . ';base64,' . $base64Image;
-            return $base64ImageSrc;
-        } else {
-            return ''; // Handle file not found error
-        }
     }
 
     public function attachments(): array
