@@ -12,13 +12,15 @@
             <a href="{{ route('user.index') }}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Back to My Characters</a>
         </div>
 
-        <div class="col d-flex justify-content-end">
-            <div class="row">
-                <!-- Settings -->
-                <div class="col">
-                    <a href="{{ route('user.settings') }}" class="btn btn-dark"><i class="fas fa-cog"></i> Settings</a>
-                </div>
-            </div>
+        <div class="col d-flex justify-content-end align-items-center">
+            <!-- Settings -->
+            <div class="btn-group btn-group-sm mr-2" role="group">
+                <a href="{{ route('user.settings') }}" class="btn btn-dark"><span class="fas fa-cog"></span> Settings</a>
+            </div>     
+            <!-- Logged History -->
+            <div class="btn-group btn-group-sm ml-2" role="group">
+                <a href="{{ route('user.logged_history') }}" class="btn btn-dark"><span class="fas fa-shield-alt"></span> Logged History</a>
+            </div>   
         </div>
     </div>
 

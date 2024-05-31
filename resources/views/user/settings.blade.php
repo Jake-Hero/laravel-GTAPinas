@@ -36,8 +36,8 @@
             @else 
                 @if (!$verified)
                     <div class="alert alert-warning">
-                        <strong>You need to verify your email address to access all settings.</strong>
-                        <p>Please check your email for the verification link.</p>
+                        <strong>You need to verify your new email address in order to edit it.</strong>
+                        <p>Please check your email for the verification link. (Check <strong>spam folder</strong>)</p>
 
                         @if (session('resent'))
                             <p class="mt-3">A new verification link has been sent to your email address.</p>
@@ -75,7 +75,8 @@
                     <div class="form-group">
                         <small style="font-size: 10px">Current Email: {{ $email }}</small><br/>
                         <label class="form-label">Email</label>
-                        <input class="form-control" type="text" placeholder="Email" name="new_email" />
+                        <input class="form-control" type="text" placeholder="Email" name="new_email" 
+                               @if(!empty($email) && !$verified) disabled @endif />
                     </div>
 
                     <div class="form-group">
@@ -94,7 +95,7 @@
                     </div>
 
                     <div class="py-3 mt-3">
-                        <button type="submit" class="btn btn-info w-100 text-white">Save Settings</button>
+                        <button type="submit" class="btn btn-dark w-100 text-white">Save Settings</button>
                     </div>
                 </div>
             </form>

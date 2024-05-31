@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\LinkExpiredException;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -39,13 +41,13 @@ class MailerController extends Controller
     public function verify(Request $request, $id, $hash)
     {
         if (! URL::hasValidSignature($request)) {
-            abort(403);
+            throw new LinkExpiredException("The link has expired.", 403);
         }
 
         $user = Account::findOrFail($id);
 
         if (! hash_equals((string) $hash, sha1($user->email))) {
-            abort(403);
+            throw new LinkExpiredException("Invalid verification link.", 403);
         }
 
         if ($user->verified) {

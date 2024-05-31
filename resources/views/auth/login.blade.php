@@ -22,6 +22,12 @@
 
                         <div id="ajax"></div>
 
+                        @if (session('status'))
+                            <div class="alert alert-success">
+                                <strong>{{ session('status') }}</strong>
+                            </div>
+                        @endif
+
                         <div class="row mb-3">
                             <label for="login" class="col-md-4 col-form-label text-md-end">{{ __('Email or Username') }}</label>
 
@@ -51,9 +57,13 @@
                         </div>
 
                         <div class="py-3 mt-3">
-                            <button type="submit" class="btn btn-info w-100 text-white">
+                            <button type="submit" class="btn btn-dark w-100 text-white">
                                 Login
                             </button>
+
+                            <div class="text-center mt-3">
+                                <a href="{{ route('passwords.request') }}">Forgot your password?</a>
+                            </div>
                         </div>
                     </form>
                 </div>

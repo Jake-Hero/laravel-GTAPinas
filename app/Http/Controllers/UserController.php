@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Models\Config;
 use App\Models\Account;
+use App\Models\PlayerIPs;
 use App\Models\Character;
 use App\Models\CharacterPhone;
 
@@ -57,6 +58,7 @@ class UserController extends Controller
         // If the new email is different from the current email, update the email
         if (!empty($request->new_email) && $request->new_email !== $user->email) {
             $user->email = $request->new_email;
+            $user->verified = false;
             $user->email_verified_at = null; // Mark email as unverified
 
             $verificationUrl = URL::temporarySignedRoute(
@@ -110,6 +112,16 @@ class UserController extends Controller
         }
 
         return view('user.index', compact('c', 'username', 'registerdate', 'totalhours', 'donatorrank', 'email', 'verified', 'vip', 'viptime', 'vip_expiration'));
+    }
+
+    // user/logged_history.php
+    public function logged_history()
+    {
+        $user = Auth::user();
+        $master_name = $user->username;
+
+        $loggedins = PlayerIPs::where('username', $user->username)->orderBy('timestamp')->limit(30)->get();
+        return view('user.logged_history', compact('master_name', 'loggedins'));    
     }
 
     // user/settings.php
@@ -172,7 +184,14 @@ class UserController extends Controller
             ],
             'skin' => 'required|integer|min:1|max:20136',
             'gender' => 'required|integer|in:1,2',
-            'birthday' => 'required|date',
+            'birthday' => [
+                'required',
+                'date',
+                function ($attribute, $value, $fail) {
+                    if (calculateCharacterAge($value) < 18) {
+                        $fail("You have set your character to be <strong>" . calculateCharacterAge($value) .  "</strong> years old, Only 18 years old and above is accepted.");
+                    }
+                }]
         ]);
 
         if ($validator->fails()) {

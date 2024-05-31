@@ -6,11 +6,15 @@
 <div class="container">
 <!-- Container -->
     <div class="mt-2 d-flex justify-content-end mb-5">
-        <div class="row">
+        <div class="col d-flex justify-content-end align-items-center">
             <!-- Settings -->
-            <div class="col">
-                <a href="{{ route('user.settings') }}" class="btn btn-dark"><i class="fas fa-cog"></i> Settings</a>
-            </div>
+            <div class="btn-group btn-group-sm mr-2" role="group">
+                <a href="{{ route('user.settings') }}" class="btn btn-dark"><span class="fas fa-cog"></span> Settings</a>
+            </div>     
+            <!-- Logged History -->
+            <div class="btn-group btn-group-sm ml-2" role="group">
+                <a href="{{ route('user.logged_history') }}" class="btn btn-dark"><span class="fas fa-shield-alt"></span> Logged History</a>
+            </div>   
         </div>
     </div>
 

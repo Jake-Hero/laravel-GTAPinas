@@ -11,18 +11,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// Disable Routes 
+Auth::routes([
+    'register' => false, 
+    'verify' => false,
+]);
+
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Mailer (Verification)
 Route::get('mail/verify/{id}/{hash}', [App\Http\Controllers\MailerController::class, 'verify'])->name('mail.verify');
 Route::get('mail/resend', [App\Http\Controllers\MailerController::class, 'resend'])->name('mail.resend');
-
-Route::get('/test', function() {
-    $name = "Adrian";
-    $verificationUrl = "http://127.0.0.1:8000/mail/verify/2/b8be2983744e4b46cedeb2f571208dd51fa35869?expires=1716954970&signature=5c8a8fcf100ad35405a620a34c809ad9861dc684d623c5e007706eeb3afdcfbc";
-
-    return view('mail.verify', compact('name', 'verificationUrl'));
-})->name('test');
 
 // About.php
 Route::get('/about', function() {
@@ -40,6 +39,11 @@ Route::get('/highscores/wealthiest', [App\Http\Controllers\HighscoresController:
 Route::get('/highscores/skins', [App\Http\Controllers\HighscoresController::class, 'skins'])->name('highscores.skins');
 Route::get('/highscores/vehiclemodels', [App\Http\Controllers\HighscoresController::class, 'vehiclemodels'])->name('highscores.vehiclemodels');
 
+Route::get('password/forgot', [App\Http\Controllers\ForgotPasswordController::class, 'showLinkRequestForm'])->name('passwords.request');
+Route::post('password/email', [App\Http\Controllers\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('passwords.email');
+Route::get('password/reset/{token}', [App\Http\Controllers\ResetPasswordController::class, 'showResetForm'])->name('passwords.reset');
+Route::post('password/reset', [App\Http\Controllers\ResetPasswordController::class, 'reset'])->name('passwords.update');
+
 // user/login.php 
 Route::get('/user/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('user.login');
 Route::post('/user/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
@@ -49,6 +53,9 @@ Route::middleware(['auth'])->group(function () {
     // user/dashboard.php
     Route::get('/user/', [App\Http\Controllers\UserController::class, 'index'])->name('user.index');
     
+    // user/logged_history.php
+    Route::get('/user/logged_history', [App\Http\Controllers\UserController::class, 'logged_history'])->name('user.logged_history');
+
     // user/settings.php
     Route::get('/user/settings', [App\Http\Controllers\UserController::class, 'settings'])->name('user.settings');
     // post method for: user/settings.php

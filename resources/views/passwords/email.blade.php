@@ -11,8 +11,17 @@
             <!-- Emulate Card -->
 
                 <h1 class="text-center">Forgot Password</h1>
+
                 @if (session('status'))
-                    <div>{{ session('status') }}</div>
+                <div class="alert alert-warning">
+                    <strong>{{ session('status') }}</strong>
+                </div>
+                @endif
+
+                @if ($errors->has('email'))
+                <div class="alert alert-danger">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </div>
                 @endif
 
                 <form action="{{ route('passwords.email') }}" method="POST">
@@ -21,10 +30,6 @@
                     <div class="form-group">
                         <label class="form-label">Email</label>
                         <input class="form-control" type="email" name="email" placeholder="Enter your email" required>
-
-                        @if ($errors->has('email'))
-                            <span>{{ $errors->first('email') }}</span>
-                        @endif
                     </div>
 
                     <div class="py-3 mt-3 text-center">
