@@ -17,8 +17,8 @@
     <div class='alert alert-warning'>
         <i class="fas fa-exclamation-triangle"></i>
         <strong class="mx-2">Notice!</strong> 
-        
-        <strong>Settings in the user control panel will reflect into your in-game account.</strong> 
+        <hr>
+        <p><strong>Settings in the user control panel will reflect into your in-game account.</strong></p>
     </div>
 
     <div class="shadow-lg p-3 mb-5 bg-light rounded">
@@ -30,8 +30,8 @@
                 <div class='alert alert-danger'>
                     <i class="fas fa-exclamation-circle"></i>
                     <strong class="mx-2">Notice!</strong> 
-
-                    <strong>Settings feature is disabled on Demo Account.</strong> 
+                    <hr>
+                    <p><strong>Settings feature is disabled on Demo Account.</strong></p>
                 </div>
             @endif
 
@@ -39,14 +39,16 @@
                 <div class="alert alert-danger">
                     <i class="fas fa-exclamation-circle"></i>
                     <strong class="mx-2">Notice!</strong> 
-
-                    <strong>You have not set your email yet, Please set your email to verify your account.</strong>
+                    <hr>
+                    <p><strong>You have not set your email yet, Please set your email to verify your account.</strong></p>
                 </div>
             @else 
                 @if (!$verified)
                     <div class="alert alert-warning">
                         <i class="fas fa-exclamation-triangle"></i>
                         <strong class="mx-2">Notice!</strong> 
+
+                        <hr>
 
                         <strong>You need to verify your new email address in order to edit it.</strong>
                         <p>Please check your email for the verification link. (Check <strong>spam folder</strong>)</p>
@@ -66,16 +68,16 @@
                 @if(session('success'))
                     <i class="fas fa-check-circle"></i>
                     <strong class="mx-2">Success!</strong> 
-
-                    <div class="alert alert-success">{{ session('success') }}</div>
+                    <hr>
+                    <p><div class="alert alert-success">{{ session('success') }}</div></p>
                 @endif
 
                 @if (session('email_verification'))
                     <div class="alert alert-success">
                         <i class="fas fa-check-circle"></i>
                         <strong class="mx-2">Success!</strong> 
-
-                        {{ session('email_verification') }}
+                        <hr>
+                        <p>{{ session('email_verification') }}</p>
                     </div>
                 @endif
                 

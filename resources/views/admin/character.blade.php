@@ -21,8 +21,8 @@
         <div class='alert alert-success'>
             <i class="fas fa-check-circle"></i>
             <strong class="mx-2">Notice</strong> 
-
-            <strong>This character has administrator privileges in-game.</strong> 
+            <hr>
+            <p><strong>This character has administrator privileges in-game.</strong> </p>
         </div>
     @endif
 

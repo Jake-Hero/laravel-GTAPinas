@@ -9,8 +9,8 @@
                 <div class='alert alert-warning'>
                     <i class="fas fa-exclamation-triangle"></i>
                     <strong class="mx-2">Notice!</strong> 
-
-                    <strong>Please register to our game server in order to access our UCP.</strong> 
+                    <hr>
+                    <p><strong>Please register to our game server in order to access our UCP.</strong></p>
                 </div>            
 
                 <div class="card-header mb-5">
@@ -45,8 +45,8 @@
                             <div class="alert alert-success">
                                 <i class="fas fa-check-circle"></i>
                                 <strong class="mx-2">Success!</strong> 
-
-                                <strong>{{ session('status') }}</strong>
+                                <hr>
+                                <p><strong>{{ session('status') }}</strong></p>
                             </div>
                         @endif
 

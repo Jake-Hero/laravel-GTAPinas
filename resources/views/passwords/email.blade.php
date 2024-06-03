@@ -22,8 +22,8 @@
                 <div class="alert alert-danger">
                     <i class="fas fa-exclamation-circle"></i>
                     <strong class="mx-2">Error!</strong> 
-
-                    <strong>{{ $errors->first('email') }}</strong>
+                    <hr>
+                    <p><strong>{{ $errors->first('email') }}</strong></p>
                 </div>
                 @endif
 

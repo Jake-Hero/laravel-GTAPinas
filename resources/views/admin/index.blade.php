@@ -13,8 +13,8 @@
         <div class='alert alert-warning'>
             <i class="fas fa-exclamation-triangle"></i>
             <strong class="mx-2">Notice!</strong> 
-
-            Admin Panel's Dashboard is still under development.
+            <hr>
+            <p>Admin Panel's Dashboard is still under development.</p>
         </div>
 
         <div class='alert alert-primary'>
