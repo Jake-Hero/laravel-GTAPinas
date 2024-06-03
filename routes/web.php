@@ -33,6 +33,11 @@ Route::get('/skins', function() {
     return view('skins');
 })->name('skins');
 
+// Download.php
+Route::get('/download', function() {
+    return view('download');
+})->name('download');
+
 // highscores
 Route::get('/highscores/playingtime', [App\Http\Controllers\HighscoresController::class, 'playingtime'])->name('highscores.playingtime');
 Route::get('/highscores/wealthiest', [App\Http\Controllers\HighscoresController::class, 'wealthiest'])->name('highscores.wealthiest');

@@ -14,6 +14,11 @@
 
                 @if ($errors->any())
                     <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <strong class="mx-2">Error!</strong> 
+
+                        <hr>
+
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>

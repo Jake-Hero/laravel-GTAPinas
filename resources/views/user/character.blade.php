@@ -28,6 +28,9 @@
 
     @if($admin > 0)
         <div class='alert alert-success'>
+            <i class="fas fa-check-circle"></i>
+            <strong class="mx-2">Notice</strong> 
+
             <strong>This character has administrator privileges in-game.</strong> 
         </div>
     @endif
@@ -58,7 +61,7 @@
                             <b>Level:</b> {{ $character->level }}<br/>
                             <b>EXP Points:</b> {{ $character->exp }}<br/>
                             <b>Online Time:</b> {{ $character->hours }}<br/>
-                            <b>Last Played:</b> {{ date('M d, Y h:iA', strtotime($character->last_login)) }} 
+                            <b>Last Played:</b> {{ date('M d, Y h:iA', $character->last_login) }} 
                         </div>
                     </div>
 

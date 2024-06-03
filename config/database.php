@@ -47,6 +47,8 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_COMPRESS => true,
+                PDO::ATTR_PERSISTENT => true,
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],

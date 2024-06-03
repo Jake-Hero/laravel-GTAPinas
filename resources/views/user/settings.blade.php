@@ -15,6 +15,9 @@
 
 
     <div class='alert alert-warning'>
+        <i class="fas fa-exclamation-triangle"></i>
+        <strong class="mx-2">Notice!</strong> 
+        
         <strong>Settings in the user control panel will reflect into your in-game account.</strong> 
     </div>
 
@@ -25,17 +28,26 @@
 
             @if($isDemo)
                 <div class='alert alert-danger'>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <strong class="mx-2">Notice!</strong> 
+
                     <strong>Settings feature is disabled on Demo Account.</strong> 
                 </div>
             @endif
 
             @if(empty($email))
                 <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <strong class="mx-2">Notice!</strong> 
+
                     <strong>You have not set your email yet, Please set your email to verify your account.</strong>
                 </div>
             @else 
                 @if (!$verified)
                     <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong class="mx-2">Notice!</strong> 
+
                         <strong>You need to verify your new email address in order to edit it.</strong>
                         <p>Please check your email for the verification link. (Check <strong>spam folder</strong>)</p>
 
@@ -52,17 +64,28 @@
                 @csrf
 
                 @if(session('success'))
+                    <i class="fas fa-check-circle"></i>
+                    <strong class="mx-2">Success!</strong> 
+
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
 
                 @if (session('email_verification'))
                     <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i>
+                        <strong class="mx-2">Success!</strong> 
+
                         {{ session('email_verification') }}
                     </div>
                 @endif
                 
                 @if ($errors->any())
                     <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <strong class="mx-2">Error!</strong> 
+
+                        <hr>
+
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -72,26 +95,26 @@
                 @endif
 
                 <div class="col-lg-5 col-md-5 col-xs-12 float-none mx-auto">
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <small style="font-size: 10px">Current Email: {{ $email }}</small><br/>
                         <label class="form-label">Email</label>
                         <input class="form-control" type="text" placeholder="Email" name="new_email" 
                                @if(!empty($email) && !$verified) disabled @endif />
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label">New Password</label>
-                        <input class="form-control" type="password" placeholder="Password" name="new_password" />
+                    <div class="form-group mt-3">
+                        <label for="cur_password" class="form-label">Current Password</label>
+                        <input class="form-control" type="password" placeholder="Current Password" id="cur_password" name="cur_password" />
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Confirm New Password</label>
+                    <div class="form-group mt-3">
+                        <label for="new_password" class="form-label">New Password</label>
+                        <input class="form-control" type="password" placeholder="Password" id="new_password" name="new_password" />
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="confirmpassForm" class="form-label">Confirm New Password</label>
                         <input class="form-control" type="password" placeholder="Confirm New Password" name="new_password_confirmation" id="confirmpassForm" />
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Current Password</label>
-                        <input class="form-control" type="password" placeholder="Current Password" name="cur_password" />
                     </div>
 
                     <div class="py-3 mt-3">

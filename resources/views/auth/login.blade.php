@@ -7,6 +7,9 @@
         <div class="col-lg-4 col-md-8 col-xs-12 float-none mx-auto">
             <div class="shadow-lg p-3 mb-5 bg-light rounded">
                 <div class='alert alert-warning'>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong class="mx-2">Notice!</strong> 
+
                     <strong>Please register to our game server in order to access our UCP.</strong> 
                 </div>            
 
@@ -20,10 +23,29 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
+                        @if ($errors->any())
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert" aria-live="assertive">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <strong class="mx-2">Error!</strong> 
+
+                                <hr>
+
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+
                         <div id="ajax"></div>
 
                         @if (session('status'))
                             <div class="alert alert-success">
+                                <i class="fas fa-check-circle"></i>
+                                <strong class="mx-2">Success!</strong> 
+
                                 <strong>{{ session('status') }}</strong>
                             </div>
                         @endif

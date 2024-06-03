@@ -11,6 +11,9 @@
     <div class="shadow-lg p-3 mb-5 bg-light rounded">
     <!-- Emulate Card -->
         <div class='alert alert-warning'>
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong class="mx-2">Notice!</strong> 
+
             Admin Panel's Dashboard is still under development.
         </div>
 

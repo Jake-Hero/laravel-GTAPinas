@@ -20,6 +20,9 @@
 
                 @if ($errors->has('email'))
                 <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <strong class="mx-2">Error!</strong> 
+
                     <strong>{{ $errors->first('email') }}</strong>
                 </div>
                 @endif

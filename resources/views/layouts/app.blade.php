@@ -47,6 +47,10 @@
                     <li class="nav-tem">
                         <a class="nav-link" href="{{ route('about') }}">About</a>
                     </li>
+
+                    <li class="nav-tem">
+                        <a class="nav-link" href="{{ route('download') }}">Download</a>
+                    </li>
     
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

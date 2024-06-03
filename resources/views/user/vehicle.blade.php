@@ -75,6 +75,9 @@
                 </div>  
             @else
                 <div class='alert alert-danger'>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <strong class="mx-2">Notice!</strong> 
+
                     This character doesn't own any vehicles.
                 </div>             
             @endif
