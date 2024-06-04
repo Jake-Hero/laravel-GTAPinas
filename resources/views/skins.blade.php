@@ -2,7 +2,7 @@
 @section('pageTitle', "Skins")
 
 @section('content')
-<div class="container vh-100">
+<div class="container">
 <!-- Container -->
     <div class='alert alert-info'>
         <strong>Please <a href="https://www.open.mp/docs/scripting/resources/skins" target="_blank">click here</a> to check for original GTA-SA skin IDs.</strong> 

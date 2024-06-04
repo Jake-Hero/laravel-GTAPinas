@@ -120,7 +120,7 @@ class UserController extends Controller
         $user = Auth::user();
         $master_name = $user->username;
 
-        $loggedins = PlayerIPs::where('username', $user->username)->orderBy('timestamp')->limit(30)->get();
+        $loggedins = PlayerIPs::where('username', $user->username)->orderBy('timestamp', 'desc')->limit(30)->get();
         return view('user.logged_history', compact('master_name', 'loggedins'));    
     }
 

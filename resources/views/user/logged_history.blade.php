@@ -29,8 +29,10 @@
                     <tbody>
                         @if(!empty($loggedins))
                             @foreach($loggedins as $log)
+                            <tr>
                                 <td>{{ $log->ip }}</td>
                                 <td>{{ $log->timestamp }}</td>
+                            </tr>
                             @endforeach
                         @else 
                             <td colspan="2">No logged history found.</td>

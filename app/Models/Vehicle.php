@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Support\Facades\DB;
+
 class Vehicle extends Model
 {
     use HasFactory;
@@ -25,16 +27,17 @@ class Vehicle extends Model
     ];
 
     // fetch the most commonly/popular vehicle in the game. limit it to $limit;
-    public function fetchPopularVehicles($limit)
+    public function fetchPopularVehicles(int $limit)
     {
-        return $this->selectRaw('model, COUNT(*) as model_count')
+        return DB::table('vehicles')
+            ->select('model', DB::raw('COUNT(*) as model_count'))
             ->where('owner', '>=', 1)
             ->groupBy('model')
             ->orderByDesc('model_count')
             ->limit($limit)
             ->get();
     }
-
+    
     // Add a method to extract weapons from house data
     public function getWeapons()
     {

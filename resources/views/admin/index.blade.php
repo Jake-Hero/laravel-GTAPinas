@@ -5,7 +5,7 @@
 
 @include('includes.admin')
 
-<div class="container vh-100">
+<div class="container">
 <!-- Container -->
 
     <div class="shadow-lg p-3 mb-5 bg-light rounded">

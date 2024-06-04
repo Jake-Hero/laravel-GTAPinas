@@ -3,7 +3,7 @@
 
 @section('content')
 
-<div class="container vh-100">
+<div class="container">
 <!-- Container -->
 
     <div class="row mt-2 mb-5">
