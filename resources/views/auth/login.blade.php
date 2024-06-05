@@ -8,9 +8,7 @@
             <div class="shadow-lg p-3 mb-5 bg-light rounded">
                 <div class='alert alert-warning'>
                     <i class="fas fa-exclamation-triangle"></i>
-                    <strong class="mx-2">Notice!</strong> 
-                    <hr>
-                    <p><strong>Please register to our game server in order to access our UCP.</strong></p>
+                    <strong>Please register to our game server in order to access our UCP.</strong>
                 </div>            
 
                 <div class="card-header mb-5">
@@ -44,9 +42,7 @@
                         @if (session('status'))
                             <div class="alert alert-success">
                                 <i class="fas fa-check-circle"></i>
-                                <strong class="mx-2">Success!</strong> 
-                                <hr>
-                                <p><strong>{{ session('status') }}</strong></p>
+                                <strong>{{ session('status') }}</strong>
                             </div>
                         @endif
 

@@ -29,9 +29,7 @@
     @if($admin > 0)
         <div class='alert alert-success'>
             <i class="fas fa-check-circle"></i>
-            <strong class="mx-2">Notice</strong> 
-            <hr>
-            <p><strong>This character has administrator privileges in-game.</strong> </p>
+            <strong>This character has administrator privileges in-game.</strong>
         </div>
     @endif
 

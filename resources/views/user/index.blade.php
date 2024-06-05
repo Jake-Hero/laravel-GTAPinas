@@ -18,6 +18,12 @@
         </div>
     </div>
 
+    @if(session('login_success'))
+        <div class="alert alert-success">
+            {{ session('login_success') }}
+        </div>
+    @endif
+
     <div class="shadow-lg p-3 mb-5 bg-light rounded">
     <!-- Emulate Card -->
         <h1 class="text-center border-bottom mb-4 mt-3">My Characters</h1>

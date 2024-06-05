@@ -12,9 +12,7 @@
     <!-- Emulate Card -->
         <div class='alert alert-warning'>
             <i class="fas fa-exclamation-triangle"></i>
-            <strong class="mx-2">Notice!</strong> 
-            <hr>
-            <p>Admin Panel's Dashboard is still under development.</p>
+            <strong>Admin Panel's Dashboard is still under development.</strong>
         </div>
 
         <div class='alert alert-primary'>

@@ -16,9 +16,7 @@
 
     <div class='alert alert-warning'>
         <i class="fas fa-exclamation-triangle"></i>
-        <strong class="mx-2">Notice!</strong> 
-        <hr>
-        <p><strong>Settings in the user control panel will reflect into your in-game account.</strong></p>
+        <strong>Settings in the user control panel will reflect into your in-game account.</strong>
     </div>
 
     <div class="shadow-lg p-3 mb-5 bg-light rounded">
@@ -66,18 +64,16 @@
                 @csrf
 
                 @if(session('success'))
-                    <i class="fas fa-check-circle"></i>
-                    <strong class="mx-2">Success!</strong> 
-                    <hr>
-                    <p><div class="alert alert-success">{{ session('success') }}</div></p>
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>{{ session('success') }}</strong>
+                    </div>
                 @endif
 
                 @if (session('email_verification'))
                     <div class="alert alert-success">
                         <i class="fas fa-check-circle"></i>
-                        <strong class="mx-2">Success!</strong> 
-                        <hr>
-                        <p>{{ session('email_verification') }}</p>
+                        <strong>{{ session('email_verification') }}</strong>
                     </div>
                 @endif
                 

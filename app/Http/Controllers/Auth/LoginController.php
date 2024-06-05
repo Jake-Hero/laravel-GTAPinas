@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 
 use App\Models\Account;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -78,6 +79,7 @@ class LoginController extends Controller
                     Auth::login($user);
 
                     //Log::info('SHA-256 password verified');
+                    Session::flash('login_success', 'Your old password has been updated to new one, you can now login to our game server.');
                     return true;
                 }
             }
