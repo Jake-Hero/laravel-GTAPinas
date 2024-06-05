@@ -19,7 +19,11 @@ Route::get('/', function () {
     $update = $jsonData['lastUpdated'];
     $ip = $jsonData['ipAddr'];
 
-    return view('welcome', compact('jsonData', 'players', 'maxPlayers', 'update', 'ip'));
+    $elapsed_time = time() - strtotime($update);
+    $minutes = floor(($elapsed_time % 3600) / 60);
+    $seconds = $elapsed_time % 60;
+
+    return view('welcome', compact('jsonData', 'players', 'maxPlayers', 'minutes', 'seconds', 'ip'));
 });
 
 Auth::routes();
