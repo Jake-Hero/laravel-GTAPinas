@@ -38,9 +38,9 @@ class LoginController extends Controller
         ];
     }
 
-    public function __construct()
+    protected function authenticated(Request $request, $user)
     {
-        $this->middleware('guest')->except('logout');
+        return redirect()->route('user.index');
     }
 
     protected function attemptLogin(Request $request)
@@ -91,6 +91,11 @@ class LoginController extends Controller
         }
 
         return false;
+    }
+
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
     }
 
     public function username()
