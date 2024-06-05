@@ -20,7 +20,8 @@
 
     @if(session('login_success'))
         <div class="alert alert-success">
-            {{ session('login_success') }}
+            <i class="fas fa-check-circle"></i>
+            <strong>{{ session('login_success') }}</strong>
         </div>
     @endif
 

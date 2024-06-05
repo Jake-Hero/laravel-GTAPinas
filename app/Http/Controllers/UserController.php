@@ -30,52 +30,57 @@ use App\Models\Furniture;
 use App\Models\Business;
 use App\Models\Vehicle;
 
-//use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
-    // POST action for user/settings.php
     public function changeSettings(Request $request)
     {
-        //Log::info('changePassword method called'); // Log statement for debugging
-        
         $user = Auth::user();
-
+    
         if ($user->isDemoAccount()) {
+            Log::info("[changeSettings] Demo accounts");
             return redirect()->back()->with('error', 'Demo accounts cannot change settings.');
         }
-
+    
         $request->validate([
             'cur_password' => ['required'],
-            //'new_password' => ['required', 'min:8', 'confirmed'],
+            'new_email' => ['nullable', 'email', 'unique:accounts,email,' . $user->id],
+            'new_password' => ['nullable', 'min:8', 'confirmed'],
         ]);
-
+    
         // Check if the current password matches the user's password
         if (!Hash::check($request->cur_password, $user->password)) {
+            //Log::info("[changeSettings] Current password is incorrect");
             return redirect()->back()->with('error', 'Current password is incorrect');
         }
-    
+        
         // If the new email is different from the current email, update the email
-        if (!empty($request->new_email) && $request->new_email !== $user->email) {
+        if ($request->filled('new_email') && $request->new_email !== $user->email) {
             $user->email = $request->new_email;
             $user->verified = false;
             $user->email_verified_at = null; // Mark email as unverified
-
+    
             $verificationUrl = URL::temporarySignedRoute(
                 'mail.verify', now()->addMinutes(20), ['id' => $user->id, 'hash' => sha1($user->email)]
             );
     
             Mail::to($user->email)->send(new VerifyEmail($user->username, $verificationUrl));
+    
+            //Log::info("[changeSettings] A verification email has been sent to your new email address.");
 
             // Flash a success message
             Session::flash('email_verification', 'A verification email has been sent to your new email address.');
         }
-
-        if(!empty($request->new_password)) {
+    
+        if ($request->filled('new_password')) {
             // Update user's password with the new password
             $user->password = Hash::make($request->new_password);
-        }
 
+            //Log::info("[changeSettings] New password.");
+        }
+    
+        //Log::info("[changeSettings] Save.");
         $user->save();
     
         return redirect()->back()->with('success', 'Settings changed successfully');

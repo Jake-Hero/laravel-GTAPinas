@@ -5,8 +5,21 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Mail\VerifyEmail;
 use Illuminate\Support\Facades\Mail;
 
+use Illuminate\Support\Facades\Http;
+
 Route::get('/', function () {
-    return view('welcome');
+    $response = Http::get('http://sam.markski.ar/api/GetServerByIP', [
+        'ip_addr' => '139.99.16.56:7777'
+    ]);
+
+    $jsonData = $response->json();
+
+    $players = $jsonData['playersOnline'];
+    $maxPlayers = $jsonData['maxPlayers'];
+    $update = $jsonData['lastUpdated'];
+    $ip = $jsonData['ipAddr'];
+
+    return view('welcome', compact('jsonData', 'players', 'maxPlayers', 'update', 'ip'));
 });
 
 Auth::routes();

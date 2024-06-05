@@ -13,7 +13,15 @@
             </center>
             <center><h5 style="font-size: 24px; color: white;">Begin your journey with us</h5></center>
         
-            <center><br><a href="http://renegadecommunity.xyz/discord" class="btn border text-white" style="width: 100%;">Join Now!</a></center>
+            <center>
+                <a href="http://renegadecommunity.xyz/discord" class="btn border text-white" style="width: 100%;">Join Now!</a>
+
+                <div class="mt-5">
+                    <p class="text-white" style="font-size: 18px;">IP Address: {{ $ip }}</p>
+                    <p class="text-white" style="font-size: 18px;">Players Online: {{ $players }}/{{ $maxPlayers }}</p>
+                    <p class="text-white" style="font-size: 18px;">Last Updated: {{ date('Y-m-d H:i:s', strtotime($update)); }}</p>
+                </div>
+            </center>
 
 
         </div>

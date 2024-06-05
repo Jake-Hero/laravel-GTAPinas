@@ -77,6 +77,13 @@
                     </div>
                 @endif
                 
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <strong>{{ session('error') }}</strong>
+                    </div>
+                @endif
+
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <i class="fas fa-exclamation-circle"></i>

@@ -48,26 +48,36 @@ class LoginController extends Controller
     {
         $credentials = $this->credentials($request);
 
-        $user = Account::where('username', $credentials['username'])
-            ->orWhere('email', $credentials['username'])
-            ->first();
+        Log::info($credentials);
+
+        // Detect if the credential is an email or username
+        $userQuery = Account::query();
+        if (isset($credentials['email']) && filter_var($credentials['email'], FILTER_VALIDATE_EMAIL)) {
+            $userQuery->where('email', $credentials['email']);
+        } elseif (isset($credentials['username'])) {
+            $userQuery->where('username', $credentials['username']);
+        } else {
+            // Handle the case where neither email nor username is provided
+            throw new \Exception('Invalid credentials');
+        }
+        
+        $user = $userQuery->first();
 
         if ($user) {
             // Check SHA-256 hashed password
-
-            if(!empty($user->key)) {
+            if (!empty($user->key)) {
                 $storedHash = $user->key;
                 $storedSalt = $user->salt;
-        
+
                 // Hash the provided password with the stored salt
                 $hashedPassword = hash('sha256', $credentials['password'] . $storedSalt);
 
                 $storedHash = strtolower($storedHash);
 
-                //Log::info($storedHash);
-                //Log::info($storedSalt);
-                //Log::info($hashedPassword);
-        
+                // Log::info($storedHash);
+                // Log::info($storedSalt);
+                // Log::info($hashedPassword);
+
                 if ($hashedPassword === $storedHash) {
                     // Update to bcrypt
                     $user->password = Hash::make($credentials['password']);
@@ -78,16 +88,17 @@ class LoginController extends Controller
                     // Authenticate user
                     Auth::login($user);
 
-                    //Log::info('SHA-256 password verified');
-                    Session::flash('login_success', 'Your old password has been updated to new one, you can now login to our game server.');
+                    // Log::info('SHA-256 password verified');
+                    Session::flash('login_success', 'Your old password has been updated to the new one, you can now log in to our game server.');
                     return true;
                 }
-            }
-            else 
-            {
+            } else {
                 // Check bcrypt hashed password
                 if (Hash::check($credentials['password'], $user->password)) {
-                    return Auth::attempt($credentials, $request->filled('remember'));
+                    return Auth::attempt([
+                        'username' => $user->username,
+                        'password' => $credentials['password']
+                    ], $request->filled('remember'));
                 }
             }
         }
