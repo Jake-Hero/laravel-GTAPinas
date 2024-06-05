@@ -118,7 +118,7 @@
 
                 <tr>
                     <td><b>Registration Date</b></td>
-                    <td>{{ date('F d, Y h:iA', strtotime($registerdate)) }}</td>
+                    <td>{{ date('F d, Y h:iA', $registerdate) }}</td>
                 </tr>
 
                 <tr>

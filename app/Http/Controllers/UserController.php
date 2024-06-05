@@ -94,7 +94,7 @@ class UserController extends Controller
         // Fetch user account details
         $account = $account->find($userId);
         $username = $account->username;
-        $registerdate = $account->registerdate;
+        $registerdate = strtotime($account->registerdate);
         $totalhours = secondsToHMS($characters->calculateTotalHours($userId));
         $donatorrank = getDonatorRank($account->donator);
         $email = $account->email ?? 'Unset';

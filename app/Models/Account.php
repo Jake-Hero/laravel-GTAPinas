@@ -15,7 +15,7 @@ class Account extends Authenticatable
     public $timestamps = false;
 
     protected $fillable = [
-        'username', 'password', 'email', 'email_verified_at', 'verified', 'code', 'email_cooldown', 'registered', 'registerdate',
+        'username', 'password', 'key', 'salt', 'email', 'email_verified_at', 'verified', 'code', 'email_cooldown', 'registered', 'registerdate',
         'ip', 'longip', 'streamer', 'donator', 'donatortime', 'tokens', 'boombox', '9mm_skill', 'silencer_skill',
         'deagle_skill', 'shotgun_skill', 'sawnoff_skill', 'spas_skill', 'uzi_skill', 'mp5_skill', 'ak_skill',
         'm4_skill',
