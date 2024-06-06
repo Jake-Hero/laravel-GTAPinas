@@ -7,8 +7,8 @@
         <div class="col-lg-4 col-md-8 col-xs-12 float-none mx-auto">
             <div class="shadow-lg p-3 mb-5 bg-light rounded">
                 <div class='alert alert-warning'>
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <strong>Please register to our game server in order to access our UCP.</strong>
+                    <strong>Good News!</strong>
+                    You can now create your account in our UCP.
                 </div>            
 
                 <div class="card-header mb-5">
@@ -75,11 +75,21 @@
                         </div>
 
                         <div class="py-3 mt-3">
+                            <div class="d-flex justify-content-center">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
+                                </div>
+                            </div>
+
                             <button type="submit" class="btn btn-dark w-100 text-white">
                                 Login
                             </button>
 
                             <div class="text-center mt-3">
+                                <a href="{{ route('user.register') }}">Don't have account yet?</a> <br/>
                                 <a href="{{ route('passwords.request') }}">Forgot your password?</a>
                             </div>
                         </div>

@@ -30,8 +30,6 @@ class Account extends Authenticatable
     {
         return [
             'password' => 'hashed',
-            'registerdate' => 'datetime',
-            'donatortime' => 'datetime',
         ];
     }
 

@@ -19,7 +19,7 @@
                 <div class="mt-5">
                     <p class="text-white" style="font-size: 18px;">IP Address: {{ $ip }}</p>
                     <p class="text-white" style="font-size: 18px;">Players Online: {{ $players }}/{{ $maxPlayers }}</p>
-                    <p class="text-white" style="font-size: 18px;">Statistics Updated: {{ $minutes }} minute/s and {{ $seconds }} second/s ago</p>
+                    <p class="text-white" style="font-size: 18px;">Updated: {{ $minutes }} minutes and {{ $seconds }} seconds ago</p>
                 </div>
             </center>
 

@@ -56,6 +56,7 @@ class Character extends Model
     {
         if (isset($column)) {
             return $this->select($column, 'charname')
+                        ->where('admin', '<', 1)
                         ->orderBy($column, 'desc')
                         ->limit($limit)
                         ->get();
@@ -77,6 +78,7 @@ class Character extends Model
     public function fetchWealthyUsers($limit) 
     {
         return $this->selectRaw('(cash + bank) AS total_wealth, charname')
+                    ->where('admin', '<', 1)
                      ->orderBy('total_wealth', 'desc')
                      ->limit($limit)
                      ->get();

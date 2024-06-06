@@ -30,7 +30,6 @@ Auth::routes();
 
 // Disable Routes 
 Auth::routes([
-    'register' => false, 
     'verify' => false,
 ]);
 
@@ -65,6 +64,10 @@ Route::get('password/forgot', [App\Http\Controllers\ForgotPasswordController::cl
 Route::post('password/email', [App\Http\Controllers\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('passwords.email');
 Route::get('password/reset/{token}', [App\Http\Controllers\ResetPasswordController::class, 'showResetForm'])->name('passwords.reset');
 Route::post('password/reset', [App\Http\Controllers\ResetPasswordController::class, 'reset'])->name('passwords.update');
+
+// user/register.php 
+Route::get('/user/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('user.register');
+Route::post('/user/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register.post');
 
 // user/login.php 
 Route::get('/user/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('user.login');

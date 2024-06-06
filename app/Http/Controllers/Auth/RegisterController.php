@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+use App\Models\Account;
+
 class RegisterController extends Controller
 {
     /*
@@ -28,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/user';
 
     /**
      * Create a new controller instance.
@@ -49,24 +51,30 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'max:255', 'unique:accounts'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:accounts'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $ipAddress = request()->ip();
+        $longip = ip2long($ipAddress); 
+
+        return Account::create([
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'registerdate' => time(),
+            'ip' => $ipAddress,
+            'longip' => $longip,
+            'donatortime' => 2147483647,
         ]);
+    }
+
+    protected function redirectTo()
+    {
+        return route('user.index');
     }
 }

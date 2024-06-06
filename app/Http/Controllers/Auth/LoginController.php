@@ -123,4 +123,12 @@ class LoginController extends Controller
     
         return $login_type;
     }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    }
 }

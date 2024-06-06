@@ -99,11 +99,12 @@ class UserController extends Controller
         // Fetch user account details
         $account = $account->find($userId);
         $username = $account->username;
-        $registerdate = strtotime($account->registerdate);
+        $registerdate = $account->registerdate;
         $totalhours = secondsToHMS($characters->calculateTotalHours($userId));
         $donatorrank = getDonatorRank($account->donator);
         $email = $account->email ?? 'Unset';
-        $verified = $account->verified ? 'Verified' : 'Not Verified';
+        $verified = "Verified";
+        //$verified = $account->verified ? 'Verified' : 'Not Verified';
         $vip = $account->donator;
         $viptime = $account->donatortime;
         $vip_expiration = ($vip > 0) ? '('.date('m/d/Y h:iA', strtotime($viptime)).')' : '';

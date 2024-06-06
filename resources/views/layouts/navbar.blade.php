@@ -67,6 +67,9 @@
     
                     @guest
                     <li class="nav-tem">
+                        <a class="nav-link" href="{{ route('user.register') }}">{{ __('Register') }}</a>
+                    </li>
+                    <li class="nav-tem">
                         <a class="nav-link" href="{{ route('user.login') }}">{{ __('Login') }}</a>
                     </li>
                     @endguest
