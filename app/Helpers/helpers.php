@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\DB;
 
 if (!function_exists('minutesToDHM')) {
-    function secondsToDHMS($seconds) {
+    function minutesToDHM($seconds) {
         $days = floor($seconds / 86400);  // 86400 seconds in a day
         $hours = floor(($seconds % 86400) / 3600);  // 3600 seconds in an hour
         $minutes = floor(($seconds % 3600) / 60);  // 60 seconds in a minute
