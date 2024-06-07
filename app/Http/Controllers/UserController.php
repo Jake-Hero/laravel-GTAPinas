@@ -150,10 +150,10 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Demo accounts cannot create characters.');
         }
 
-        // Check if the user is verified
+        /* Check if the user is verified
         if (!$user->verified) {
             return redirect()->back()->with('error', 'You must verify your account to create characters.');
-        }
+        }*/
 
         // Check if the user already has a character for the given slot
         $character = Character::where('uid', $user->id)->where('slot', $slot)->first();
