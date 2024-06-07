@@ -2,12 +2,11 @@
 use Illuminate\Support\Facades\DB;
 
 if (!function_exists('minutesToDHM')) {
-    function minutesToDHM($seconds) {
-        $days = floor($seconds / 86400);  // 86400 seconds in a day
-        $hours = floor(($seconds % 86400) / 3600);  // 3600 seconds in an hour
-        $minutes = floor(($seconds % 3600) / 60);  // 60 seconds in a minute
-        $seconds = $seconds % 60;
-
+    function minutesToDHM($minutes) {
+        $days = floor($minutes / 1440);  // 1440 minutes in a day
+        $hours = floor(($minutes % 1440) / 60);  // 60 minutes in an hour
+        $minutes = $minutes % 60;
+    
         $output = '';
         if ($days > 1) {
             $output .= "$days days";
@@ -23,14 +22,8 @@ if (!function_exists('minutesToDHM')) {
 
         if ($minutes > 1) {
             $output .= ($output ? ', ' : '') . "$minutes minutes";
-        } elseif ($minutes == 1) {
+        } else {
             $output .= ($output ? ', ' : '') . "$minutes minute";
-        }
-
-        if ($seconds > 1) {
-            $output .= ($output ? ', ' : '') . "$seconds seconds";
-        } elseif ($seconds == 1) {
-            $output .= ($output ? ', ' : '') . "$seconds second";
         }
 
         return $output;
