@@ -55,6 +55,7 @@ Route::get('/download', function() {
 })->name('download');
 
 // highscores
+Route::get('/highscores/monthlyrankings', [App\Http\Controllers\HighscoresController::class, 'monthlyrankings'])->name('highscores.monthlyrankings');
 Route::get('/highscores/playingtime', [App\Http\Controllers\HighscoresController::class, 'playingtime'])->name('highscores.playingtime');
 Route::get('/highscores/wealthiest', [App\Http\Controllers\HighscoresController::class, 'wealthiest'])->name('highscores.wealthiest');
 Route::get('/highscores/skins', [App\Http\Controllers\HighscoresController::class, 'skins'])->name('highscores.skins');

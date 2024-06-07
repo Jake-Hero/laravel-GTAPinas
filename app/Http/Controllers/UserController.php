@@ -100,7 +100,7 @@ class UserController extends Controller
         $account = $account->find($userId);
         $username = $account->username;
         $registerdate = $account->registerdate;
-        $totalhours = secondsToHMS($characters->calculateTotalHours($userId));
+        $totalhours = secondsToDHMS($characters->calculateTotalHours($userId));
         $donatorrank = getDonatorRank($account->donator);
         $email = $account->email ?? 'Unset';
         $verified = "Verified";
@@ -114,7 +114,7 @@ class UserController extends Controller
 
         // Format hours attribute for each character
         foreach ($c as &$character) {
-            $character->hours = secondsToHMS($character->hours);
+            $character->hours = secondsToDHMS($character->hours);
         }
 
         return view('user.index', compact('c', 'username', 'registerdate', 'totalhours', 'donatorrank', 'email', 'verified', 'vip', 'viptime', 'vip_expiration'));
@@ -247,7 +247,7 @@ class UserController extends Controller
             abort(403);
         }
 
-        $character->hours = secondsToHMS($character->hours);
+        $character->hours = secondsToDHMS($character->hours);
 
         $faction = $character->faction->name ?? null;
         $gang = $character->gang->name ?? null;

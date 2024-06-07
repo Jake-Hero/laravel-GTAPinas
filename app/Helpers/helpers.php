@@ -1,13 +1,75 @@
 <?php
 use Illuminate\Support\Facades\DB;
 
-if (!function_exists('secondsToHMS')) {
-    function secondsToHMS($seconds) {
-        $hours = floor($seconds / 3600);
+if (!function_exists('secondsToDHMS')) {
+    function secondsToDHMS($seconds) {
+        $days = floor($seconds / 86400);  // 86400 seconds in a day
+        $hours = floor(($seconds % 86400) / 3600);  // 3600 seconds in an hour
+        $minutes = floor(($seconds % 3600) / 60);  // 60 seconds in a minute
+        $seconds = $seconds % 60;
+
+        $output = '';
+        if ($days > 1) {
+            $output .= "$days days";
+        } elseif ($days == 1) {
+            $output .= "$days day";
+        }
+
+        if ($hours > 1) {
+            $output .= ($output ? ', ' : '') . "$hours hours";
+        } elseif ($hours == 1) {
+            $output .= ($output ? ', ' : '') . "$hours hour";
+        }
+
+        if ($minutes > 1) {
+            $output .= ($output ? ', ' : '') . "$minutes minutes";
+        } elseif ($minutes == 1) {
+            $output .= ($output ? ', ' : '') . "$minutes minute";
+        }
+
+        if ($seconds > 1) {
+            $output .= ($output ? ', ' : '') . "$seconds seconds";
+        } elseif ($seconds == 1) {
+            $output .= ($output ? ', ' : '') . "$seconds second";
+        }
+
+        return $output;
+    }
+}
+
+if (!function_exists('secondsToDHMS')) {
+    function secondsToDHMS($seconds) {
+        $days = floor($seconds / 86400);
+        $hours = floor(($seconds % 86400) / 3600);
         $minutes = floor(($seconds % 3600) / 60);
         $seconds = $seconds % 60;
         
-        return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+        $output = '';
+        if ($days > 1) {
+            $output .= "$days days";
+        } elseif ($days == 1) {
+            $output .= "$days day";
+        }
+
+        if ($hours > 1) {
+            $output .= ($output ? ', ' : '') . "$hours hours";
+        } elseif ($hours == 1) {
+            $output .= ($output ? ', ' : '') . "$hours hour";
+        }
+
+        if ($minutes > 1) {
+            $output .= ($output ? ', ' : '') . "$minutes minutes";
+        } elseif ($minutes == 1) {
+            $output .= ($output ? ', ' : '') . "$minutes minute";
+        }
+
+        if ($seconds > 1) {
+            $output .= ($output ? ', ' : '') . "$seconds seconds";
+        } elseif ($seconds == 1) {
+            $output .= ($output ? ', ' : '') . "$seconds second";
+        }
+
+        return $output;
     }
 }
 

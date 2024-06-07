@@ -9,13 +9,25 @@ use App\Models\Vehicle;
 
 class HighscoresController extends Controller
 {
+    public function monthlyrankings(Character $characters)
+    {   
+        $data = $characters->fetchTopCharacterData('monthly_playtime', 20);
+
+        // Format hours attribute for each character
+        foreach ($data as &$character) {
+            $character->monthly_playtime = minutesToDHM($character->monthly_playtime);
+        }
+
+        return view('highscores.monthlyrankings', compact('data'));
+    }
+
     public function playingTime(Character $characters)
     {   
         $data = $characters->fetchTopCharacterData('hours', 20);
 
         // Format hours attribute for each character
         foreach ($data as &$character) {
-            $character->hours = secondsToHMS($character->hours);
+            $character->hours = secondsToDHMS($character->hours);
         }
 
         return view('highscores.playingtime', compact('data'));

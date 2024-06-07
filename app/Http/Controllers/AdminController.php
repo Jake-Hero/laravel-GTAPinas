@@ -48,7 +48,7 @@ class AdminController extends Controller
         
         $userid = $character->uid;
 
-        $character->hours = secondsToHMS($character->hours);
+        $character->hours = secondsToDHMS($character->hours);
 
         $faction = $character->faction->name ?? null;
         $gang = $character->gang->name ?? null;

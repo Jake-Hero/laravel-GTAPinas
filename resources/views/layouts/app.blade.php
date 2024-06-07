@@ -58,6 +58,7 @@
                         </a>        
     
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('highscores.monthlyrankings') }}">Monthly Rankings</a>
                             <a class="dropdown-item" href="{{ route('highscores.playingtime') }}">Active Players</a>
                             <a class="dropdown-item" href="{{ route('highscores.wealthiest') }}">Wealthiest Players</a>
                             <a class="dropdown-item" href="{{ route('highscores.skins') }}">Used Skins</a>
