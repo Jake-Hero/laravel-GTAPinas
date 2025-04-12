@@ -4,6 +4,8 @@
 
 ----
 
+**EDIT: as of April 2025, this project is no longer active - however this project ended in a good high note. The website is planned and is coded optimizely.**
+
 This is a project, currently being worked on and active. (Active Website @ http://renegadecommunity.xyz/)
 
 This is a User Control Panel website made for GTA Pinas (Renegade Roleplay Community), a game server in San Andreas Multiplayer.
