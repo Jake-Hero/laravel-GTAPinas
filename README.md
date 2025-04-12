@@ -24,7 +24,7 @@ This is a User Control Panel website made for GTA Pinas (Renegade Roleplay Commu
 
 ### The website's database is ran on MySQL (XAMPP) / PhpMyAdmin.
 
-#### This project is done by solely by me, with ideas from aezakmi (Adrian).
+#### This project is done by me, with ideas from aezakmi (Adrian).
 
 ---
 
